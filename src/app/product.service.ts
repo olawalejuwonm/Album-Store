@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import  "rxjs/add/operator/map";
+import "rxjs/add/operator/map";
+import { Observable } from 'rxjs/Observable';
+
 // import { map } from 'rxjs/operator/map';
 // import { Observable, Operator  } from "rxjs"
 // import { Observable  } from "rxjs"
@@ -17,24 +19,20 @@ export class ProductService {
   //   this._albumUrl = value;
   //   // this.filtredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
   // }
-
-  // getAlbum(id: Number): {
-  //   return this._http.get(_albumUrl)
-  // }
-  getAlbum(id: number): any {
-    // console.log(id);
+  getAlbum(id: number): Observable<Album> {
     return this._http.get(this._albumUrl)
-    .map((response => response.json()))
-   //  .pipe(
-   //   (response) => response.json()
-   //   //  map(response => response.json())
-   //  )
-   //   .subscribe({
-   //    next: (response) => response.json()
-   //  })
-}
+      .map((response => response.json()));
+
+  }
+  //  .pipe(
+  //   (response) => response.json()
+  //   //  map(response => response.json())
+  //  )
+  //   .subscribe({
+  //    next: (response) => response.json()
+  //  })
   constructor(private _http: Http) { }
-  
-  
+
+
 
 }
